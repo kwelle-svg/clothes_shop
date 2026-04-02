@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Shop</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #222;
+            --accent: #ff5a5f;
+            --bg: #f9f9f9;
+            --white: #ffffff;
+            --text-muted: #666;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            margin: 0;
+            background-color: var(--bg);
+            color: var(--primary);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: var(--white);
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo { font-weight: 800; font-size: 1.5rem; text-transform: uppercase; }
+        .nav-links { list-style: none; display: flex; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--primary); font-weight: 500; }
+
+        /* Hero Section */
+        .hero {
+            height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: #eee;
+            margin-bottom: 2rem;
+        }
+
+        /* Product Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Product Card */
+        .card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .card:hover { transform: translateY(-5px); }
+
+        .image-placeholder {
+            width: 100%;
+            height: 250px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        .card-info { padding: 1.5rem; }
+        .card-info h3 { margin: 0 0 0.5rem 0; font-size: 1.1rem; }
+        .price { color: var(--accent); font-weight: bold; font-size: 1.2rem; }
+
+        .btn-add {
+            width: 100%;
+            padding: 0.8rem;
+            margin-top: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-add:hover { background: #444; }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            background: var(--primary);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">LUXE.</div>
+        <ul class="nav-links">
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Cart (0)</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>Season Essentials</h1>
+        <p>Curated quality for your everyday life.</p>
+    </header>
+
+    <main class="container">
+        <section class="products-grid">
+            <div class="card">
+                <div class="image-placeholder">Product Image</div>
+                <div class="card-info">
+                    <h3>Classic Tote</h3>
+                    <span class="price">$85.00</span>
+                    <button class="btn-add">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="image-placeholder">Product Image</div>
+                <div class="card-info">
+                    <h3>Wool Beanie</h3>
+                    <span class="price">$32.00</span>
+                    <button class="btn-add">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="image-placeholder">Product Image</div>
+                <div class="card-info">
+                    <h3>Canvas Sneakers</h3>
+                    <span class="price">$120.00</span>
+                    <button class="btn-add">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="image-placeholder">Product Image</div>
+                <div class="card-info">
+                    <h3>Leather Journal</h3>
+                    <span class="price">$45.00</span>
+                    <button class="btn-add">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 LUXE Shop. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
