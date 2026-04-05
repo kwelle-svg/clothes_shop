@@ -140,23 +140,23 @@
 
         <section class="admin-card">
             <h3>Quick Add Product</h3>
-            <form action="/postdata" method="POST">
+            <form action="/products_postdata" method="POST">
                 <div class="form-grid">
                     <input type="text" placeholder="Product Name" name="name">
-                    <select>
-                        <option>Select Category</option>
-                        <option>Accessories</option>
-                        <option>Footwear</option>
-                        <option>Apparel</option>
-                    </select>
-                    <select>
+                    <select name="brand_id">
                         <option>Select Brand</option>
-                        <option>Nike</option>
-                        <option>Everlane</option>
-                        <option>Luxe Basics</option>
+                        {% for brand in brands %}
+                        <option value="{{ brand.brand_id }}">{{ brand.name }}</option>
+                        {% endfor %}
                     </select>
-                    <input type="number" placeholder="Price ($)">
-                    <button class="btn btn-add">Save Product</button>
+                    <select name="category_id">
+                        <option>Select Category</option>
+                        {% for category in categories %}
+                        <option value="{{ category.category_id }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="number" placeholder="Price ($)" name="price">
+                    <input class="btn btn-add" type="submit" value="Save Product">
                 </div>
             </form>
         </section>
@@ -166,61 +166,53 @@
                 <thead>
                     <tr>
                         <th>Product</th>
-                        <th>Category</th>
                         <th>Brand</th>
+                        <th>Category</th>
                         <th>Price</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for product in products %}
                     <tr>
-                        <td>Classic Tote</td>
-                        <td><span class="badge">Accessories</span></td>
-                        <td>Everlane</td>
-                        <td>$85.00</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ brands[product.brand_id] }}</td>
+                        <td><span class="badge">{{ categories[product.category_id] }}</span></td>
+                        <td>${{ product.price }}</td>
                         <td><button class="btn btn-delete">Remove</button></td>
                     </tr>
-                    <tr>
-                        <td>Wool Beanie</td>
-                        <td><span class="badge">Apparel</span></td>
-                        <td>Luxe Basics</td>
-                        <td>$32.00</td>
-                        <td><button class="btn btn-delete">Remove</button></td>
-                    </tr>
-                    <tr>
-                        <td>Canvas Sneakers</td>
-                        <td><span class="badge">Footwear</span></td>
-                        <td>Nike</td>
-                        <td>$120.00</td>
-                        <td><button class="btn btn-delete">Remove</button></td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </section>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-            <form action="/postdata" method="POST">
                 <section class="admin-card">
                     <h3>Brands</h3>
-                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-                        <input type="text" placeholder="New Brand" style="flex-grow: 1;" name="name">
-                        <input class="btn btn-add" type="submit" value="Add">
-                    </div>
+                    <form action="/brands_postdata" method="POST">
+                        <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                            <input type="text" placeholder="New Brand" style="flex-grow: 1;" name="name">
+                            <input class="btn btn-add" type="submit" value="Add">
+                        </div>
+                    </form>
                     <ul style="list-style: none; padding: 0;">
-                        <li style="display:flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #eee;">Nike <a href="#" style="color:red; font-size: 0.8rem;">Delete</a></li>
-                        <li style="display:flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #eee;">Everlane <a href="#" style="color:red; font-size: 0.8rem;">Delete</a></li>
+                    {% for brand in brands %}
+                        <li style="display:flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #eee;">{{ brand.name }} <a href="#" style="color:red; font-size: 0.8rem;">Delete</a></li>
+                    {% endfor %}
                     </ul>
                 </section>
-            </form>
             <section class="admin-card">
                 <h3>Categories</h3>
+                <form action="/categories_postdata" method="POST">
                 <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-                    <input type="text" placeholder="New Category" style="flex-grow: 1;">
-                    <button class="btn btn-add">Add</button>
+                    <input type="text" placeholder="New Category" style="flex-grow: 1;" name="name">
+                    <input class="btn btn-add" type="submit" value="Add">
                 </div>
+                </form>
                 <ul style="list-style: none; padding: 0;">
-                    <li style="display:flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #eee;">Footwear <a href="#" style="color:red; font-size: 0.8rem;">Delete</a></li>
-                    <li style="display:flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #eee;">Accessories <a href="#" style="color:red; font-size: 0.8rem;">Delete</a></li>
+                    {% for category in categories %}
+                    <li style="display:flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #eee;">{{ category.name }} <a href="#" style="color:red; font-size: 0.8rem;">Delete</a></li>
+                    {% endfor %}
                 </ul>
             </section>
         </div>

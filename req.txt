@@ -3,3 +3,5 @@ jinja2
 uvicorn
 sqlalchemy
 python-dotenv
+passlib
+jose

@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Date, Numeric, ForeignKey
-from datetime import datetime
+from datetime import date
 from app.database import Base
 
 class Product(Base):
@@ -10,9 +10,10 @@ class Product(Base):
     description = Column(String(250))
     brand_id = Column(ForeignKey("brands.brand_id"))
     category_id = Column(ForeignKey("categories.category_id"))
-    created_at = Column(Date, default=datetime.now("%Y-%m-%d"))
+    created_at = Column(Date, default=date.today)
     price = Column(Numeric(10,2))
     sale = Column(Numeric(1,2), default=0)
+    # img = 
 
 
 class Brand(Base):
