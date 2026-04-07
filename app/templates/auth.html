@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Register | LUXE</title>
+    <style>
+        :root {
+            --primary: #222;
+            --accent: #ff5a5f;
+            --bg: #f4f7f6;
+            --white: #ffffff;
+            --border: #e0e0e0;
+            --text-muted: #777;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 400px;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            display: block;
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        /* Toggle Tabs */
+        .tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 0.8rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: 0.3s;
+        }
+
+        .tab.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            margin-bottom: -2px;
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            text-align: left;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        input {
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--accent);
+        }
+
+        .btn-auth {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: opacity 0.3s;
+        }
+
+        .btn-auth:hover {
+            opacity: 0.9;
+        }
+
+        .footer-links {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Toggle Logic Utility */
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="auth-container">
+        <a href="#" class="logo">LUXE.</a>
+
+        <div class="tabs">
+            <div class="tab active" id="login-tab" onclick="switchTab('login')">Login</div>
+            <div class="tab" id="register-tab" onclick="switchTab('register')">Register</div>
+        </div>
+
+        <form id="login-form" method="POST" action="/user/token">
+            <div class="form-group">
+                <label>Email Address</label>
+                <input name="email" type="email" placeholder="name@example.com" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input name="password" type="password" placeholder="••••••••" required>
+            </div>
+            <input value="Sign In" type="submit" class="btn-auth">
+            <div class="footer-links">
+                <a href="#">Forgot password?</a>
+            </div>
+        </form>
+
+        <form id="register-form" class="hidden" method="post" action="create">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" placeholder="John Doe" required name="name">
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" placeholder="name@example.com" required name="email">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" placeholder="Create a password" required name="password">
+            </div>
+            <input type="submit" class="btn-auth" value="Create Account">
+            <p class="footer-links">
+                By signing up, you agree to our <a href="#">Terms</a>.
+            </p>
+        </form>
+    </div>
+
+    <script>
+        function switchTab(type) {
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const loginTab = document.getElementById('login-tab');
+            const registerTab = document.getElementById('register-tab');
+
+            if (type === 'login') {
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                loginTab.classList.add('active');
+                registerTab.classList.remove('active');
+            } else {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                loginTab.classList.remove('active');
+                registerTab.classList.add('active');
+            }
+        }
+        
+    </script>
+</body>
+</html>

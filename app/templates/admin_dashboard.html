@@ -140,7 +140,7 @@
 
         <section class="admin-card">
             <h3>Quick Add Product</h3>
-            <form action="/products_postdata" method="POST">
+            <form action="/admin/products_postdata" method="POST">
                 <div class="form-grid">
                     <input type="text" placeholder="Product Name" name="name">
                     <select name="brand_id">
@@ -176,8 +176,8 @@
                     {% for product in products %}
                     <tr>
                         <td>{{ product.name }}</td>
-                        <td>{{ brands[product.brand_id] }}</td>
-                        <td><span class="badge">{{ categories[product.category_id] }}</span></td>
+                        <td>brand</td>
+                        <td><span class="badge">category</span></td>
                         <td>${{ product.price }}</td>
                         <td><button class="btn btn-delete">Remove</button></td>
                     </tr>
@@ -189,7 +189,7 @@
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
                 <section class="admin-card">
                     <h3>Brands</h3>
-                    <form action="/brands_postdata" method="POST">
+                    <form action="/admin/brands_postdata" method="POST">
                         <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
                             <input type="text" placeholder="New Brand" style="flex-grow: 1;" name="name">
                             <input class="btn btn-add" type="submit" value="Add">
@@ -203,7 +203,7 @@
                 </section>
             <section class="admin-card">
                 <h3>Categories</h3>
-                <form action="/categories_postdata" method="POST">
+                <form action="/admin/categories_postdata" method="POST">
                 <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
                     <input type="text" placeholder="New Category" style="flex-grow: 1;" name="name">
                     <input class="btn btn-add" type="submit" value="Add">
